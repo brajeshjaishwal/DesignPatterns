@@ -11,6 +11,7 @@ namespace TestClass
         public static void Main(string[] args)
         {
             DeviceManager dm = DeviceManager.Instance;
+
         }
     }
 }
