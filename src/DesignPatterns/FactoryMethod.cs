@@ -7,9 +7,10 @@ namespace DesignPatterns
 {
     /*
      As the defination goes:
-     Define an interface for creating an object, but let subclasses decide which class to instantiate. The Factory method lets a class defer instantiation it uses to subclasses.
+     Define an interface for creating an object, but let subclasses decide which class to instantiate. 
+     The Factory method lets a class defer instantiation it uses to subclasses.
 
-     We chose this pattern because we wanted to a single access point for instance creation for the class family.
+     We chose this pattern because we wanted to have a single access point for instance creation for the class family.
      */
     public class FactoryMethod
     {
