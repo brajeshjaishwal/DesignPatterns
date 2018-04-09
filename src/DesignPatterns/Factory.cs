@@ -12,48 +12,59 @@ namespace DesignPatterns
      The intent in employing the pattern is to insulate the creation of objects from their usage and to create families of related objects without having to depend on their concrete classes.
     
      We chose this pattern because we wanted to have a single access point for instance creation for a family of classes.
+     */    
+
+    public interface ICollectionManager
+    {
+        void StartCollection();
+        void StopCollection();
+    }
+
+    /*
+     * Collection manager concrete class handling operations based on open bed system
      */
-    //Empty vocabulary of actual object
-    public interface IPerson
+    public class OpenbedCollectionManager : ICollectionManager
     {
-        string GetName();
-    }
-
-    public class Villager : IPerson
-    {
-        public string GetName()
+        public void StartCollection()
         {
-            return "Village Person";
+            // do stuffs related with open bed
+        }
+        public void StopCollection()
+        {
+            // do stuffs related with closed bed
         }
     }
 
-    public class CityPerson : IPerson
+    /*
+     * Collection manager concrete class handling operations based on closed bed system
+     */
+    public class ClosebedCollectionManager : ICollectionManager
     {
-        public string GetName()
+        public void StartCollection()
         {
-            return "City Person";
+            // do stuffs related with closed bed
+        }
+        public void StopCollection()
+        {
+            // do stuffs related with closed bed
         }
     }
 
-    public enum PersonType
-    {
-        Rural,
-        Urban
-    }
+    public enum DeviceSubGroup { OpenbedCollector, ClosedbedCollector }
 
     /// <summary>
     /// Implementation of Factory - Used to create objects
     /// </summary>
-    public class Factory
+    public class CollectionMangerFactory
     {
-        public IPerson GetPerson(PersonType type)
+        public ICollectionManager GetCollectionManager(DeviceSubGroup type)
         {
             switch (type)
             {
-                case PersonType.Rural:
-                    return new Villager();
-                case PersonType.Urban:
-                    return new CityPerson();
+                case DeviceSubGroup.OpenbedCollector:
+                    return new OpenbedCollectionManager();
+                case DeviceSubGroup.ClosedbedCollector:
+                    return new ClosebedCollectionManager();
                 default:
                     throw new NotSupportedException();
             }

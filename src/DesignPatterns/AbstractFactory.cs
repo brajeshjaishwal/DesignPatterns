@@ -95,6 +95,9 @@ namespace DesignPatterns
         public Generic_Device_Configurator CreateDeviceConfigPanelInstance() => _deviceFactory.CreateDeviceConfigPanelInstance();
     }
 
+
+
+    //required definitions
     public interface I_Device { }
     public interface Generic_Method_Panel_Configurator { }
     public interface Generic_Device_Configurator { }
