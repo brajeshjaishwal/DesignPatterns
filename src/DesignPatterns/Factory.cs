@@ -52,10 +52,14 @@ namespace DesignPatterns
 
     public enum DeviceSubGroup { OpenbedCollector, ClosedbedCollector }
 
+    public interface ICollectionMangerFactory
+    {
+        ICollectionManager GetCollectionManager(DeviceSubGroup type);
+    }
     /// <summary>
     /// Implementation of Factory - Used to create objects
     /// </summary>
-    public class CollectionMangerFactory
+    public class CollectionMangerFactory : ICollectionMangerFactory
     {
         public ICollectionManager GetCollectionManager(DeviceSubGroup type)
         {
