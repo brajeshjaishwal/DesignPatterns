@@ -12,6 +12,9 @@ namespace TestClass
         {
             DeviceManager dm = DeviceManager.Instance;
             IDeviceFactory adcf = AbstractDeviceCreationFactory.Instance;
+            ICollectionManagerFactory icmf = new CollectionManagerFactory();
+            ICollectionManager obcm = icmf.GetCollectionManager(DeviceSubGroup.OpenbedCollector);
+            ICollectionManager cbcm = icmf.GetCollectionManager(DeviceSubGroup.ClosedbedCollector);
         }
     }
 }
