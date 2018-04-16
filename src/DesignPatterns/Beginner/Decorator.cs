@@ -36,9 +36,9 @@ namespace DesignPatterns
     /*
      * Decorate pump status class to hold more customized features
      */
-    public class DecoratedPumpStatus
+    public class DecoratedDeviceStatus
     {
         public DeviceStatus _status;
-        public bool FlowEquilibrated; //in case of pump flow should be withing the range
+        public bool Equilibrated; //in case of pump flow should be withing the range
     }
 }
