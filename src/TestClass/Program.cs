@@ -10,7 +10,7 @@ namespace TestClass
     {
         public static void Main(string[] args)
         {
-            DeviceManager dm = DeviceManager.Instance;
+            DeviceManagerSingleton dm = DeviceManagerSingleton.Instance;
             IDeviceFactory adcf = AbstractDeviceCreationFactory.Instance;
             ICollectionManagerFactory icmf = new CollectionManagerFactory();
             ICollectionManager obcm = icmf.GetCollectionManager(DeviceSubGroup.OpenbedCollector);

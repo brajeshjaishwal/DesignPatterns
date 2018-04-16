@@ -10,35 +10,81 @@ namespace DesignPatterns
      * 
      * We used this pattern to decorate device status class's objects to carry added information to the UI side, while they are passed as it is in data writer module.
      */
-    public class DeviceConnectionState { }
 
-    /// <summary>
-    /// This class is from 3rd party library that we cannot modify
-    /// </summary>
-    public class DeviceStatus
+    public enum DeviceSubGroup { OpenbedCollector, ClosedbedCollector }
+
+    public interface ICollectionManager
     {
-        public bool Running;
-        public DeviceConnectionState ConnectionState;
-        public bool Alarm;
-        public string AlarmMsg;
-        public bool Warning;
-        public string WarningMsg;
-    }   
-    /// <summary>
-    /// This class is from 3rd part library that we cannot modify
-    /// </summary>
-    public class PumpStatus : DeviceStatus
-    {
-        public double Flow;
-        public double Pressure;
+        void Start();
+        void Stop();
     }
 
-    /*
-     * Decorate pump status class to hold more customized features
-     */
-    public class DecoratedDeviceStatus
+    public class SimpleCollectionManager : ICollectionManager
     {
-        public DeviceStatus _status;
-        public bool Equilibrated; //in case of pump flow should be withing the range
+        public void Start()
+        {
+            // to do
+        }
+
+        public void Stop()
+        {
+            // to do
+        }
+    }
+    /// <summary>
+    /// abstract decorator
+    /// </summary>
+    public abstract class CollectionManager : ICollectionManager
+    {
+        protected ICollectionManager _icm;
+
+        public CollectionManager(ICollectionManager icm)
+        {
+            _icm = icm;
+        }
+
+        public void Start()
+        {
+            _icm.Start();
+        }
+
+        public void Stop()
+        {
+            _icm.Stop();
+        }
+    }
+
+    public class OpenbedCollectionManager : CollectionManager
+    {
+        public OpenbedCollectionManager(ICollectionManager idm) : base(idm) { }
+
+        public new void Start()
+        {
+            base.Start();
+            //add open system specific implementation
+        }
+
+        public new void Stop()
+        {
+            base.Stop();
+            //add open system specific implementation
+        }
+    }
+
+    public class ClosedbedCollectionManager : CollectionManager
+    {
+        public ClosedbedCollectionManager(ICollectionManager idm) : base(idm) { }
+
+        public new void Start()
+        {
+            base.Start();
+            //add open system specific implementation
+        }
+
+        public new void Stop()
+        {
+            base.Stop();
+            //add open system specific implementation
+        }
     }
 }

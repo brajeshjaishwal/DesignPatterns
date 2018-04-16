@@ -8,12 +8,12 @@ namespace DesignPatterns
      2. we want to have device initialization once (initial).
      3. we want to have single and global access point.
      */
-    public sealed class DeviceManager
+    public sealed class DeviceManagerSingleton
     {
-        private static volatile Lazy<DeviceManager> _instance = new Lazy<DeviceManager>(() => new DeviceManager(), true);
-        public static DeviceManager Instance => _instance.Value;
+        private static volatile Lazy<DeviceManagerSingleton> _instance = new Lazy<DeviceManagerSingleton>(() => new DeviceManagerSingleton(), true);
+        public static DeviceManagerSingleton Instance => _instance.Value;
 
-        private DeviceManager() { /* to do*/ }
+        private DeviceManagerSingleton() { /* to do*/ }
 
         /*
          * remaining code

@@ -14,44 +14,6 @@ namespace DesignPatterns
      We chose this pattern because we wanted to have a single access point for instance creation for a family of classes.
      */
 
-    public interface ICollectionManager
-    {
-        void StartCollection();
-        void StopCollection();
-    }
-
-    /*
-     * Collection manager concrete class handling operations based on open bed system
-     */
-    public class OpenbedCollectionManager : ICollectionManager
-    {
-        public void StartCollection()
-        {
-            // do stuffs related with open bed
-        }
-        public void StopCollection()
-        {
-            // do stuffs related with closed bed
-        }
-    }
-
-    /*
-     * Collection manager concrete class handling operations based on closed bed system
-     */
-    public class ClosebedCollectionManager : ICollectionManager
-    {
-        public void StartCollection()
-        {
-            // do stuffs related with closed bed
-        }
-        public void StopCollection()
-        {
-            // do stuffs related with closed bed
-        }
-    }
-
-    public enum DeviceSubGroup { OpenbedCollector, ClosedbedCollector }
-
     public interface ICollectionManagerFactory
     {
         ICollectionManager GetCollectionManager(DeviceSubGroup type);
@@ -63,12 +25,13 @@ namespace DesignPatterns
     {
         public ICollectionManager GetCollectionManager(DeviceSubGroup type)
         {
+            ICollectionManager cmm = new SimpleCollectionManager();
             switch (type)
             {
                 case DeviceSubGroup.OpenbedCollector:
-                    return new OpenbedCollectionManager();
+                    return new OpenbedCollectionManager(cmm);
                 case DeviceSubGroup.ClosedbedCollector:
-                    return new ClosebedCollectionManager();
+                    return new ClosedbedCollectionManager(cmm);
                 default:
                     throw new NotSupportedException();
             }
