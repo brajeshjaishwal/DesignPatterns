@@ -26,7 +26,7 @@ namespace DesignPatterns
     public interface IBuilder
     {
         void SetId();
-        Command GetResult();
+        Command GetCommand();
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace DesignPatterns
         {
             p.SetId(CommandId.LoadIntegration);
         }
-        public Command GetResult()
+        public Command GetCommand()
         {
             return p;
         }
@@ -55,7 +55,7 @@ namespace DesignPatterns
         {
             p.SetId(CommandId.ManualIntegration);
         }
-        public Command GetResult()
+        public Command GetCommand()
         {
             return p;
         }
@@ -93,12 +93,12 @@ namespace DesignPatterns
             director.Construct(b1);
 
             //representation 1
-            Command p1 = b1.GetResult();
+            Command p1 = b1.GetCommand();
             p1.Display();
 
             director.Construct(b2);
             //representation 2
-            Command p2 = b2.GetResult();
+            Command p2 = b2.GetCommand();
             p2.Display();
 
             Console.Read();
