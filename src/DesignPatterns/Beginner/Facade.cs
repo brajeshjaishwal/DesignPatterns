@@ -13,10 +13,10 @@ namespace DesignPatterns
     public class ChromScopeSystem
     {
         // instances of various modules
-        private IConfigurationManager _configManager;
-        private ICollectionManager _collectionManager;
-        private IDataFileManager _dataFileManager;
-        private IWorkflowManager _workFlowManager;
+        private IConfigurationManager _configManager = null;
+        private ICollectionManager _collectionManager = null;
+        private IDataFileManager _dataFileManager = null;
+        private IWorkflowManager _workFlowManager = null;
 
         /*
          * Work flow manager related methods
