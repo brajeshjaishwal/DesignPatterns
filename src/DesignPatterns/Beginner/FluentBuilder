@@ -1,5 +1,5 @@
 using System;
-namespace DesignPatterns.Beginner
+namespace DesignPatterns
 {
     public class Person
     {
