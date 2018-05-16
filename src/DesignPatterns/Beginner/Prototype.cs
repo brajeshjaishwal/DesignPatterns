@@ -8,20 +8,23 @@ namespace DesignPatterns
     {
         public static T DeepCopy<T>(this T t)
         {
-            var stream = new MemoryStream();
-            var formatter = new BinaryFormatter();
-            formatter.Serialize(stream, t);
-            stream.Seek(0, SeekOrigin.Begin);
-            T ret = (T) formatter.Deserialize(stream);
-            stream.Close();
-            return ret;
+            using(var stream = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, t);
+                stream.Seek(0, SeekOrigin.Begin);
+                return (T) formatter.Deserialize(stream);
+            }
         }
     }
 
+    [Serializable]
     public class Address
     {
         public string [] Names = new string[]{"first", "second"};
         public string PinCode = "302029";
+        
+        public Address() {}
     }
 
     public class Demo
