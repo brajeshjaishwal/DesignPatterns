@@ -10,7 +10,7 @@ namespace DesignPatterns
         {
             var stream = new MemoryStream();
             var formator = new BinaryFormatter();
-            formator.Serialize(T, stream);
+            formator.Serialize(stream, t);
             stream.Seek(0, SeekOrigin.Begin);
             var ret = (T) formator.Deserialize(stream);
             return ret;
