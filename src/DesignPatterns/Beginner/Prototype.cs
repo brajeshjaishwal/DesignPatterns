@@ -9,10 +9,11 @@ namespace DesignPatterns
         public static T DeepCopy<T>(this T t)
         {
             var stream = new MemoryStream();
-            var formator = new BinaryFormatter();
-            formator.Serialize(stream, t);
+            var formatter = new BinaryFormatter();
+            formatter.Serialize(stream, t);
             stream.Seek(0, SeekOrigin.Begin);
-            var ret = (T) formator.Deserialize(stream);
+            T ret = (T) formatter.Deserialize(stream);
+            stream.Close();
             return ret;
         }
     }
