@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DesignPatterns
+namespace DesignPatterns.Beginner
 {
     /*
      * A facade is an object that provides a simplified interface to a larger body of code.

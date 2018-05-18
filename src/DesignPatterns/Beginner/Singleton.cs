@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DesignPatterns
+namespace DesignPatterns.Beginner
 {
     /*
      We chose this pattern because,

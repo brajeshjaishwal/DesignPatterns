@@ -9,7 +9,7 @@ using System.Threading.Tasks;
  * The intent in employing this pattern makes it possible to interchange concrete implementations without changing the code that uses them, even at runtime.
  * We chose to use this pattern in our project because we wanted the switch creation/instantiation of device classes dynamically.
  */
-namespace DesignPatterns
+namespace DesignPatterns.Beginner
 {
     /// <summary>
     /// Different technologies to create device object
