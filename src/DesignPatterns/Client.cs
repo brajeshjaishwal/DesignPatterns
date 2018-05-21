@@ -45,6 +45,10 @@ namespace DesignPatterns
 
             Console.Write(person);
             #endregion Beginner.FluentBuilder
+
+            #region Prototype
+            Person personCopy = CloneManager.DeepCopy<Person>(person);
+            #endregion Prototype
         }
     }
 }
