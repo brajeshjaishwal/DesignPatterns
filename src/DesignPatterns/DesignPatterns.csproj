@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <AssemblyName>DesignPatterns</AssemblyName>
@@ -11,10 +10,9 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="BinaryFormatter" Version="2.1.4" />
-    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="BinaryFormatter" Version="2.1.4"/>
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0"/>
+    <PackageReference Include="Autofac" Version="4.8.1"/>
   </ItemGroup>
-
 </Project>

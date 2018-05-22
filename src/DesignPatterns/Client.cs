@@ -1,8 +1,7 @@
-﻿using DesignPatterns.Beginner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using Autofac;
+using DesignPatterns.Beginner;
+using DesignPatterns.Intermediate;
 
 namespace DesignPatterns
 {
@@ -76,6 +75,10 @@ namespace DesignPatterns
             var wPieChart = new DesignPatterns.Intermediate.PieChart(wRenderer);
             wPieChart.Draw();
             wPieChart.Resize();
+
+            //use dependency injection to resolve any construction dependency
+            IOCContainer.CreateContainer(RendererType.Waters);
+            var bubbleChart = new DesignPatterns.Intermediate.BubbleChart();
             #endregion Bridge
         }
     }

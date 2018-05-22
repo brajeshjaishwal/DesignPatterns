@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace DesignPatterns.Intermediate
 {
@@ -10,6 +11,7 @@ namespace DesignPatterns.Intermediate
 
      */
 
+    public enum RendererType { Nevron, Waters } 
     //Abstraction
     public interface IRenderer
     {
@@ -36,6 +38,13 @@ namespace DesignPatterns.Intermediate
     //Bridge
     public abstract class Chart{
         IRenderer _renderer = null;
+        public Chart()
+        {
+            using (var scope = IOCContainer.Container.BeginLifetimeScope())
+            {
+                _renderer = scope.Resolve<IRenderer>();
+            }
+        }
         public Chart(IRenderer _r) { _renderer = _r; }
         public virtual void Draw() => _renderer.Draw();
         public virtual void Resize() => _renderer.Resize();
@@ -65,6 +74,21 @@ namespace DesignPatterns.Intermediate
         public override void Resize() {
             base.Resize();
             //Bar chart related stuffs.
+        }
+    }
+
+    /// <summary>
+    /// Chart control with dependency injection
+    /// </summary>
+    public class BubbleChart : Chart{
+
+        public override void Draw() {
+            base.Draw();
+            //Bubble chart related stuffs.
+        }
+        public override void Resize() {
+            base.Resize();
+            //Bubble chart related stuffs.
         }
     }
 }
