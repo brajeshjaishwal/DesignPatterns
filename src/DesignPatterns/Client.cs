@@ -54,6 +54,29 @@ namespace DesignPatterns
             Intermediate.RawPumpStatus _rawStatus = new Intermediate.RawPumpStatus() { Flow = "9.8", APercent = "67", BPercent = "33" };
             Intermediate.ProcessedPumpStatus _status = Intermediate.Converter.ConvertPumpStatus(_rawStatus);
             #endregion Adapter
+
+            #region Bridge
+            var nRenderer = new DesignPatterns.Intermediate.NevronChartRenderer();
+            var wRenderer = new DesignPatterns.Intermediate.WatersChartRenderer();
+
+            var nBarChart = new DesignPatterns.Intermediate.BarChart(nRenderer);
+
+            nBarChart.Draw();
+            nBarChart.Resize();
+
+            var wBarChart = new DesignPatterns.Intermediate.BarChart(wRenderer);
+            wBarChart.Draw();
+            wBarChart.Resize();
+
+            var nPieChart = new DesignPatterns.Intermediate.PieChart(nRenderer);
+
+            nPieChart.Draw();
+            nPieChart.Resize();
+
+            var wPieChart = new DesignPatterns.Intermediate.PieChart(wRenderer);
+            wPieChart.Draw();
+            wPieChart.Resize();
+            #endregion Bridge
         }
     }
 }
