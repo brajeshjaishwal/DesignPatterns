@@ -80,6 +80,23 @@ namespace DesignPatterns
             IOCContainer.CreateContainer(RendererType.Waters);
             var bubbleChart = new DesignPatterns.Intermediate.BubbleChart();
             #endregion Bridge
+
+            #region Observer
+            WatchedCollection wc = new WatchedCollection();
+
+            Watcher watcher1 = new Watcher();
+            //watch events on collection
+            watcher1.Watch(wc);
+
+            Watcher watcher2 = new Watcher();
+            //watch events on collection
+            watcher2.Watch(wc);
+
+            wc.AddItem("First");
+            wc.AddItem("Second");
+
+            wc.RemoveItem("Second");
+            #endregion Observer
         }
     }
 }
