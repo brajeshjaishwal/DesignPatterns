@@ -97,6 +97,12 @@ namespace DesignPatterns
 
             wc.RemoveItem("Second");
             #endregion Observer
+                
+            #strategy DesignPatterns
+            Log l = new Log();
+            Exporter<ExportToCSV>.Export(l);
+            Exporter<ExportToWord>.Export(l);
+            #endregion strategy DesignPatterns
         }
     }
 }
