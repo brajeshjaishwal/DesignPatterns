@@ -103,6 +103,21 @@ namespace DesignPatterns
             Exporter<ExportToCSV>().Export(l);
             Exporter<ExportToWord>().Export(l);
             #endregion strategy DesignPatterns
+
+            #mediater DesignPatterns
+            ChatRoom cr = new ChatRoom();
+            cr.Set("first");
+
+            User one = new User("one");
+            User two = new User("two");
+
+            cr.Join(one);
+            cr.Join(two);
+
+            User three = new User("three");
+            cr.Join(three);
+            
+            #endregion DesignPatterns
         }
     }
 }
