@@ -14,37 +14,59 @@ namespace DesignPatterns.Intermediate
     /// 
     /// </summary>
 
-    public class User{
-        public string Name { get; set; }
-        public User(string name) => Name = name;
-        public void SendMessage(User from, string message)
-        {
-            Console.Writeline($"User: {from.Name}, Message: {message}");
-        }
-    }
-    public class ChatRoom//Mediater
-    {
-        public string Name;
-        public List<User> _users = new List<User>();
-        public ChatRoom(){}
-        public void Set(string name) => Name = Name;
+  public class Person
+  {
+    public string Name;
+    public ChatRoom Room;
+    private List<string> chatLog = new List<string>();
 
-        public void Join(User user)
-        {
-            _users.Add(user);
-            BroadcastMessage(user, $"User: {user.Name} has just joined in.");
-        }
-        public void BroadcastMessage(User from, string SendMessage)
-        {
-            foreach(var to in _users)
-            {
-                to.SendMessage(from, message);
-            }
-        }
-        public void SendMessage(User from, string name, string SendMessage)
-        {
-            _users.Find(u => u.Name == name)?.
-            SendMessage(from, message);
-        }
+    public Person(string name)
+    {
+      Name = name;
     }
+
+    public void Receive(string sender, string message)
+    {
+      string s = $"{sender}: '{message}'";
+      WriteLine($"[{Name}'s chat session] {s}");
+      chatLog.Add(s);
+    }
+
+    public void Say(string message)
+    {
+      Room.Broadcast(Name, message);
+    }
+
+    public void PrivateMessage(string who, string message)
+    {
+      Room.Message(Name, who, message);
+    }
+  }
+
+  public class ChatRoom //Mediater
+  {
+    private List<Person> people = new List<Person>();
+    private string Name;
+    public void SetName(string name) => Name = name;
+    public void Broadcast(string source, string message)
+    {
+      foreach (var p in people)
+        if (p.Name != source)
+          p.Receive(source, message);
+    }
+
+    public void Join(Person p)
+    {
+      string joinMsg = $"{p.Name} joins the chat";
+      Broadcast("room", joinMsg);
+
+      p.Room = this;
+      people.Add(p);
+    }
+
+    public void Message(string source, string destination, string message)
+    {
+      people.FirstOrDefault(p => p.Name == destination)?.Receive(source, message);
+    }
+  }
 }

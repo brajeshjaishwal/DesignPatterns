@@ -98,26 +98,32 @@ namespace DesignPatterns
             wc.RemoveItem("Second");
             #endregion Observer
                 
-            #strategy DesignPatterns
+            #region strategy
             Log l = new Log();
             Exporter<ExportToCSV>().Export(l);
             Exporter<ExportToWord>().Export(l);
-            #endregion strategy DesignPatterns
+            #endregion strategy
 
-            #mediater DesignPatterns
-            ChatRoom cr = new ChatRoom();
-            cr.Set("first");
+            #region mediater
+            var room = new ChatRoom();
+            room.SetName("Storm");
 
-            User one = new User("one");
-            User two = new User("two");
+            var ram = new Person("ram");
+            var rahim = new Person("rahim");
 
-            cr.Join(one);
-            cr.Join(two);
+            room.Join(ram);
+            room.Join(rahim);
 
-            User three = new User("three");
-            cr.Join(three);
-            
-            #endregion DesignPatterns
+            ram.Say("hi room");
+            rahim.Say("oh, hey ram, how r u?");
+
+            var kishan = new Person("kishan");
+            room.Join(kishan);
+            kishan.Say("hi everyone!");
+
+            ram.PrivateMessage("kishan", "glad you could join us!");
+
+            #endregion mediater
         }
     }
 }
