@@ -28,7 +28,7 @@ namespace DesignPatterns.Intermediate
     public void Receive(string sender, string message)
     {
       string s = $"{sender}: '{message}'";
-      WriteLine($"[{Name}'s chat session] {s}");
+      Console.WriteLine($"[{Name}'s chat session] {s}");
       chatLog.Add(s);
     }
 

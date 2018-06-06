@@ -1,0 +1,24 @@
+﻿{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    },
+    "Autofac": "4.8.1",
+    "BinaryFormatter": "2.1.4",
+    "Stateless": "4.2.1",
+    "System.Runtime.Serialization.Formatters": "4.3.0",
+    "System.Threading.Timer": "4.3.0"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  }
+}

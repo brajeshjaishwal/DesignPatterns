@@ -37,7 +37,7 @@ namespace DesignPatterns.Intermediate
      public class Exporter<ES> where ES:IExportStrategy, new ()
      {
          IExportStrategy es = new ES();
-         void Export(Log l)
+         public void Export(Log l)
          {
             es.Export(l);
          }

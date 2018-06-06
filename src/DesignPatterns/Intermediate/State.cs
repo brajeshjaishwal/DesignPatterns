@@ -1,5 +1,6 @@
 using Stateless;
 using System;
+using System.Threading;
 
 namespace DesignPatterns.Intermediate
 {
@@ -11,12 +12,12 @@ namespace DesignPatterns.Intermediate
         private readonly StateMachine<State, Trigger>.TriggerWithParameters<string> _startTrigger;
         private readonly StateMachine<State, Trigger>.TriggerWithParameters<string> _stopTrigger;
         private readonly StateMachine<State, Trigger>.TriggerWithParameters<string> _pauseTrigger;
-        private Timer _systemRunningTimer = new Timer();
-        private Timer _systemIdleTimer = new Timer();
+        //private Timer _systemRunningTimer = new Timer()
+        //private Timer _systemIdleTimer = new Timer();
 
-        public SystemState()
+        public WorkFlowState()
         {
-            _wfm = new Stateless<State, Trigger>(State.Stopped);
+            _wfm = new Stateless.StateMachine<State, Trigger>(State.Stopped);
 
             _startTrigger = _wfm.SetTriggerParameters<string>(Trigger.StartRun);
             _stopTrigger = _wfm.SetTriggerParameters<string>(Trigger.StopRun);
@@ -27,15 +28,15 @@ namespace DesignPatterns.Intermediate
                 .OnEntryFrom(_stopTrigger, onSystemStop);
 
             _wfm.Configure(State.Paused)
-                .Permit(Trigger.ForceStop)
+                .Permit(Trigger.ForceStop, State.Stopped)
                 .OnEntryFrom(_pauseTrigger, onSystemPause);
 
-            _wfm.Configure(state.Running)
-                .Permit(Trigger.StopRun)
+            _wfm.Configure(State.Running)
+                .Permit(Trigger.StopRun, State.Stopped)
                 .OnEntryFrom(_startTrigger, onSystemStart)
-                .Permit(Trigger.ForceStop)
-                .Permit(Trigger.PauseStop)
-                .OnExit(onSystemStop);            
+                .Permit(Trigger.ForceStop, State.Stopped)
+                .Permit(Trigger.PauseRun, State.Paused)
+                .OnExit(onRunEnded);            
         }
 
         private void onSystemStart(string info)
@@ -43,6 +44,10 @@ namespace DesignPatterns.Intermediate
             //to do
         }
 
+        private void onRunEnded()
+        {
+            //to do
+        }
         private void onSystemStop(string info)
         {
             //to do

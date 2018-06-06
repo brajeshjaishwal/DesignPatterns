@@ -7,7 +7,7 @@ namespace DesignPatterns
 {
     public class Client
     {
-        public static void Main()
+        public void Execute()
         {
             #region Beginner.Builder
             // Create one director means same construction process
@@ -38,7 +38,7 @@ namespace DesignPatterns
             #endregion Beginner.Prototype
 
             #region Beginner.FluentBuilder
-            Person person = Person.New
+            Beginner.Person person = Beginner.Person.New
                 .KnownAs.Name("Brajesh").Age(1111).Height(4444)
                 .Works.At("Metacube").Getting(5555).As("####");
 
@@ -46,7 +46,7 @@ namespace DesignPatterns
             #endregion Beginner.FluentBuilder
 
             #region Prototype
-            Person personCopy = CloneManager.DeepCopy<Person>(person);
+            Beginner.Person personCopy = CloneManager.DeepCopy<Beginner.Person>(person);
             #endregion Prototype
 
             #region Adapter
@@ -99,17 +99,20 @@ namespace DesignPatterns
             #endregion Observer
                 
             #region strategy
+
             Log l = new Log();
-            Exporter<ExportToCSV>().Export(l);
-            Exporter<ExportToWord>().Export(l);
+            new Exporter<ExportToCSV>().Export(l);
+
+            new Exporter<ExportToWord>().Export(l);
+
             #endregion strategy
 
             #region mediater
             var room = new ChatRoom();
             room.SetName("Storm");
 
-            var ram = new Person("ram");
-            var rahim = new Person("rahim");
+            var ram = new Intermediate.Person("ram");
+            var rahim = new Intermediate.Person("rahim");
 
             room.Join(ram);
             room.Join(rahim);
@@ -117,7 +120,7 @@ namespace DesignPatterns
             ram.Say("hi room");
             rahim.Say("oh, hey ram, how r u?");
 
-            var kishan = new Person("kishan");
+            var kishan = new Intermediate.Person("kishan");
             room.Join(kishan);
             kishan.Say("hi everyone!");
 
