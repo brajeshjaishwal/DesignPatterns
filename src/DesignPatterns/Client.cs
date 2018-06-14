@@ -149,6 +149,11 @@ namespace DesignPatterns
             ae.Accept(ep);
             Console.WriteLine($"Visitor.AdditionExpressionPrinter: {ep.getReport()}");//must print (2 + 3)
             #endregion Visitor
+
+            #region NullObject
+            Transaction tr = new Transaction(new NullLogger());
+            tr.MakeTransaction();
+            #endregion NullObject
         }
     }
 }
