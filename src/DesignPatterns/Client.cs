@@ -127,6 +127,28 @@ namespace DesignPatterns
             ram.PrivateMessage("kishan", "glad you could join us!");
 
             #endregion mediater
+
+            #region Visitor
+            Expression e1 = new Value(2);
+            Expression e2 = new Value(3);
+
+            ExpressionEvaluator ev = new ExpressionEvaluator();
+            ExpressionPrinter ep = new ExpressionPrinter();
+
+            MultiplicationExpression me = new MultiplicationExpression(e1, e2);
+            me.Accept(ev);
+            Console.WriteLine($"Visitor.MultiplicationExpressionEvaluator: {ev.getResult()}");//must print 6
+
+            me.Accept(ep);
+            Console.WriteLine($"Visitor.MultiplicationExpressionPrinter: {ep.getReport()}");//must print (2 * 3)
+
+            AdditionExpression ae = new AdditionExpression(e1, e2);
+            ae.Accept(ev);
+            Console.WriteLine($"Visitor.AdditionExpressionEvaluator: {ev.getResult()}");//must print 5
+
+            ae.Accept(ep);
+            Console.WriteLine($"Visitor.AdditionExpressionPrinter: {ep.getReport()}");//must print (2 + 3)
+            #endregion Visitor
         }
     }
 }
