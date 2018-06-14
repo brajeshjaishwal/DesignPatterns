@@ -50,8 +50,8 @@ namespace DesignPatterns
             #endregion Prototype
 
             #region Adapter
-            Intermediate.RawPumpStatus _rawStatus = new Intermediate.RawPumpStatus() { Flow = "9.8", APercent = "67", BPercent = "33" };
-            Intermediate.ProcessedPumpStatus _status = Intermediate.Converter.ConvertPumpStatus(_rawStatus);
+            RawPumpStatus _rawStatus = new RawPumpStatus() { Flow = "9.8", APercent = "67", BPercent = "33" };
+            ProcessedPumpStatus _status = Converter.ConvertPumpStatus(_rawStatus);
             #endregion Adapter
 
             #region Bridge
