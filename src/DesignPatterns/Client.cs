@@ -46,7 +46,7 @@ namespace DesignPatterns
             #endregion Beginner.FluentBuilder
 
             #region Prototype
-            Beginner.Person personCopy = CloneManager.DeepCopy<Beginner.Person>(person);
+            Beginner.Person personCopy = CloneManager.DeepCopy(person);
             #endregion Prototype
 
             #region Adapter
