@@ -151,8 +151,14 @@ namespace DesignPatterns
             #endregion Visitor
 
             #region NullObject
-            Transaction tr = new Transaction(new NullLogger());
+            //use actual logger intance
+            Transaction tr = new Transaction(new ActualLogger());
             tr.MakeTransaction();
+
+            //use null logger instance (a fake representative to logger functionality)
+            Transaction trWithFakeLogging = new Transaction();//we are introducing null logger dependancy using IOC containers (autofac)
+            trWithFakeLogging.MakeTransaction();
+            
             #endregion NullObject
         }
     }

@@ -5,8 +5,8 @@ namespace DesignPatterns.Intermediate
     /*
      * This patterns talk about the ease in changing strategies at runtime
 
-       Here staragies are treated as concrete classes but used by way of 
-       abstraction, that makes it possible to replace them by others at ease
+       Here staragies are treated as concrete classes but used by way of abstraction,
+       that makes it possible to replace them by others at ease
      */
 
      public class Log {

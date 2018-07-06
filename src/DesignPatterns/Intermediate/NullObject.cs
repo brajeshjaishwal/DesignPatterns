@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesignPatterns.Intermediate
 {
+    public enum LoggerType { Null, FileLogger }
     /*
      * 
         Definition: Provide an object as a surrogate for the lack of an object of a given type.
@@ -35,6 +37,13 @@ namespace DesignPatterns.Intermediate
     public class Transaction
     {
         ILogger _log = null;
+        public Transaction()
+        {
+            using (var scope = IOCContainer.Container.BeginLifetimeScope())
+            {
+                _log = scope.Resolve<ILogger>();
+            }
+        }
         public Transaction(ILogger logger)
         {
             _log = logger;
